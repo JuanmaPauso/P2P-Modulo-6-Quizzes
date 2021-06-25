@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
 
     class Group extends Model {}
 
-    Quiz.init({
+    Group.init({
             name: {
                 type: DataTypes.STRING,
                 unique: true,
