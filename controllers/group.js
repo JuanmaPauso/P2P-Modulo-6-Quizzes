@@ -76,7 +76,7 @@ exports.edit = async (req, res, next) => {
 
     const groupQuizzesIds = await group.getQuizzes().map(quiz => quiz.id);
 
-    res.render('groups/edit', {groups, allQuizzes, groupQuizzesIds});
+    res.render('groups/edit', {group, allQuizzes, groupQuizzesIds});
 };
 
 
