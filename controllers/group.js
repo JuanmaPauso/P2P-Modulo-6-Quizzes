@@ -169,7 +169,7 @@ exports.randomPlay = async (req, res, next) => {
         
         if (quiz) {
             req.session.groupPlay[group.id].lastQuizId = quiz.id;
-            res.render("groups/random_play", {quiz, score})
+            res.render("groups/random_play", {group, quiz, score})
         } else {
             delete req.session.groupPlay[group.id];
             res.render("groups/random_nomore", {group, score})
@@ -209,18 +209,16 @@ exports.randomCheck = async (req, res, next) => {
             req.session.groupPlay[group.id].resolved.push(req.load.quiz.id);
 
         }
-    } 
-     
-    const score = req.session.groupPlay[group.id].resolved.length;
+        const score = req.session.groupPlay[group.id].resolved.length;
+        res.render("groups/random_result", {group, result, answer, score});
 
-    if (!result) {
-
+    } else {
+        
+        const score = req.session.groupPlay[group.id].resolved.length;
         delete req.session.groupPlay[group.id];
+        res.render("groups/random_result", {group, result, answer, score});
 
     }
-
-    res.render("groups/random_result", {group, result, answer, score});
-
 
 };
 
