@@ -188,14 +188,24 @@ router.get('/quizzes/:quizId(\\d+)/check', quizController.check);
 router.get('/groups',
     groupController.index);
 router.get('/groups/new',
+    sessionController.loginRequired,
+    sessionController.adminRequired, 
     groupController.new);
 router.post('/groups',
+    sessionController.loginRequired,
+    sessionController.adminRequired,
     groupController.create);
 router.get('/groups/:groupId(\\d+)/edit',
+    sessionController.loginRequired,
+    sessionController.adminRequired,
     groupController.edit);
 router.put('/groups/:groupId(\\d+)',
+    sessionController.loginRequired,
+    sessionController.adminRequired,
     groupController.update);
 router.delete('/groups/:groupId(\\d+)',
+    sessionController.loginRequired,
+    sessionController.adminRequired,
     groupController.destroy);
 
 router.get('/groups/:groupId(\\d+)/randomplay',  groupController.randomPlay);
